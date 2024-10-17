@@ -2,12 +2,56 @@
 import os
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
-'''
+
+"""
 STEVE SPLASH CODES (@whiteshepherdsec | @whiteshepherdse)
 THIS SCRIPT IS CREATED FOR GOOD USE ONLY!
 REMEMBER TO BE ETHICAL AS PERFORMING ATTACKS IN AN UNAUTHORIZE ENVIRONMENT CAN PUT IN JAIL! USE AT YOUR OWN RISK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 exit(;)
-'''
+2024-17-10 05:33 GMT/UTC +1:00
+"""
+
+"""
+DNS Enumeration Script
+
+This script automates the process of running various DNS enumeration tools on a list of target domains.
+It uses multithreading to improve performance and organizes the output into separate directories for each tool.
+
+Usage:
+    python script.py -i <input_file> -o <output_directory> [--threads <num_threads>]
+
+Arguments:
+    -i, --input      File containing a list of target domains (one per line). This is a required argument.
+    -o, --output     Directory where the results will be stored. This is a required argument.
+    --threads        Number of concurrent threads to use for processing (default: 100).
+
+Output Structure:
+The output will be organized into the specified output directory, with subdirectories for each DNS tool:
+- dnsrecon/
+- dnsenum/
+- dnsmap/
+- dig/
+- whois/
+- nslookup/
+
+Each subdirectory will contain the results for the corresponding tool, named in the format:
+<target>_<tool>.extension
+
+Dependencies:
+    - dnsrecon
+    - dnsenum
+    - dnsmap
+    - dig
+    - whois
+    - nslookup
+
+Example:
+    python script.py -i targets.txt -o dns_results --threads 50
+
+Note:
+Ensure that the required DNS tools are installed and accessible in your system's PATH.
+"""
+
 def read_targets(target_file):
     with open(target_file, 'r', encoding='utf-8') as file:
         return [target.strip() for target in file.readlines()]

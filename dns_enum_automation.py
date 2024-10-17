@@ -18,7 +18,7 @@ This script automates the process of running various DNS enumeration tools on a 
 It uses multithreading to improve performance and organizes the output into separate directories for each tool.
 
 Usage:
-    python script.py -i <input_file> -o <output_directory> [--threads <num_threads>]
+    python script.py -i <input_file> -o <output_directory> [-t | --threads <num_threads>]
 
 Arguments:
     -i, --input      File containing a list of target domains (one per line). This is a required argument.
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run DNS enumeration tools on specified targets.')
     parser.add_argument('-i', '--input', type=str, required=True, help='File containing list of target domains')
     parser.add_argument('-o', '--output', type=str, required=True, help='Output folder for results')
-    parser.add_argument('--threads', type=int, default=100, help='Number of concurrent threads (default: 100)')
+    parser.add_argument('-t', '--threads', type=int, default=100, help='Number of concurrent threads (default: 100)')
 
     args = parser.parse_args()
 
@@ -142,4 +142,3 @@ if __name__ == '__main__':
 
 # how to run
 # python script.py -i targets.txt -o dns_results --threads 50
-
